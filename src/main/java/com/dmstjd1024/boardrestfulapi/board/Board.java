@@ -1,5 +1,6 @@
 package com.dmstjd1024.boardrestfulapi.board;
 
+import com.dmstjd1024.boardrestfulapi.board.dto.BoardDto;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board {
@@ -29,4 +30,23 @@ public class Board {
 
     private Long boardRecommend;
 
+    public Board create(BoardDto boardDto){
+
+        Board board = Board.builder()
+                .title(boardDto.getTitle())
+                .content(boardDto.getContent())
+                .createDate(LocalDateTime.now())
+                .modifyDate(LocalDateTime.now())
+                .boardViewCheck(0L)
+                .boardRecommend(0L)
+                .build();
+
+        return board;
+
+    }
+    public void update(BoardDto boardDto) {
+        this.title = boardDto.getTitle();
+        this.modifyDate = LocalDateTime.now();
+        this.content = boardDto.getContent();
+    }
 }
