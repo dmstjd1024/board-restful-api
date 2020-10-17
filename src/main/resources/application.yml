@@ -4,3 +4,9 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
